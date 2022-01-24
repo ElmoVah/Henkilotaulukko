@@ -18,7 +18,6 @@ const App: FC = () => {
       if (newHenkiloLista[i] === henkilo) {
         newHenkiloLista[i] = paivitettyHenkilo
       }
-      console.log(newHenkiloLista[i], henkilo, paivitettyHenkilo);
     }
     setHenkiloLista(newHenkiloLista);
   }
@@ -29,13 +28,17 @@ const App: FC = () => {
     }))
   };
 
+  const paivitaHenkiloLista = (jarjestettuHenkilolista: IHenkilo[]): void => {
+    setHenkiloLista(jarjestettuHenkilolista);
+  }
+
   return (
     <div className="App">
       <div className="uusiHenkilo">
         <UusiHenkilo {... { addHenkilo }} />
       </div>
       <div className="henkiloLista">
-        <HenkiloLista {...{ henkiloLista, poistaHenkilo, paivitaHenkilo }} />
+        <HenkiloLista {...{ henkiloLista, poistaHenkilo, paivitaHenkilo, paivitaHenkiloLista }} />
       </div>
     </div>
   );

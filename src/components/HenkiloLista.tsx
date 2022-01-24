@@ -6,9 +6,10 @@ interface Props {
     henkiloLista: IHenkilo[];
     poistaHenkilo(poistettavaHenkilo: IHenkilo): void;
     paivitaHenkilo(henkilo: IHenkilo, uusiHenkilo: IHenkilo): void;
+    paivitaHenkiloLista(jarjestettuHenkilolista: IHenkilo[]): void
 }
 
-const HenkiloLista = ({ henkiloLista, poistaHenkilo, paivitaHenkilo }: Props) => {
+const HenkiloLista = ({ henkiloLista, poistaHenkilo, paivitaHenkilo, paivitaHenkiloLista }: Props) => {
 
     const [tietojenMuokkaus, setTietojenMuokkaus] = useState<boolean>(false);
     const [muokattavaHenkilo, setMuokattavaHenkilo] = useState<IHenkilo>();
@@ -16,10 +17,11 @@ const HenkiloLista = ({ henkiloLista, poistaHenkilo, paivitaHenkilo }: Props) =>
     const lopetaTietojenMuokkaus = (): void => {
         setTietojenMuokkaus(false);
     }
-    
+
     const muutaTietoja = (henkilo: IHenkilo): void => {
         setMuokattavaHenkilo(henkilo);
         setTietojenMuokkaus(true);
+        console.log(henkiloLista);
     }
 
     const paivitaTiedot = (henkilo: IHenkilo, uusiHenkilo: IHenkilo): void => {
@@ -27,14 +29,74 @@ const HenkiloLista = ({ henkiloLista, poistaHenkilo, paivitaHenkilo }: Props) =>
         setTietojenMuokkaus(false);
     }
 
+    const jarjestaEtunimi = (): void => {
+        const uusiHenkiloLista = [...henkiloLista];
+        uusiHenkiloLista.sort(compareEtunimi);
+        paivitaHenkiloLista(uusiHenkiloLista);
+    }
+
+    const jarjestaSukunimi = (): void => {
+        const uusiHenkiloLista = [...henkiloLista];
+        uusiHenkiloLista.sort(compareSukunimi);
+        paivitaHenkiloLista(uusiHenkiloLista);
+    }
+
+    const jarjestaIka = (): void => {
+        const uusiHenkiloLista = [...henkiloLista];
+        uusiHenkiloLista.sort(compareIka);
+        paivitaHenkiloLista(uusiHenkiloLista);
+    }
+
+    function compareEtunimi(a: IHenkilo, b: IHenkilo) {
+        if ( a.etunimi < b.etunimi ){
+            return -1;
+          }
+          if ( a.etunimi > b.etunimi ){
+            return 1;
+          }
+          return 0;
+    }
+
+    function compareSukunimi(a: IHenkilo, b: IHenkilo) {
+        if ( a.sukunimi < b.sukunimi ){
+            return -1;
+          }
+          if ( a.sukunimi > b.sukunimi ){
+            return 1;
+          }
+          return 0;
+    }
+
+    function compareIka(a: IHenkilo, b: IHenkilo) {
+        if ( a.ika < b.ika ){
+            return -1;
+          }
+          if ( a.ika > b.ika ){
+            return 1;
+          }
+          return 0;
+    }
+
     return (
         <table>
             <caption>Henkilöt</caption>
             <thead>
                 <tr>
-                    <th>Etunimi</th>
-                    <th>Sukunimi</th>
-                    <th>Ikä</th>
+                    <th>
+                        <button onClick={() => jarjestaEtunimi()}>
+                            Etunimi
+                        </button>
+                    </th>
+                    <th>
+                        <button onClick={() => jarjestaSukunimi()}>
+                            Sukunimi
+                        </button>
+                    </th>
+                    <th>
+                        <button onClick={() => jarjestaIka()}>
+                            Ikä
+                        </button>
+                    </th>
                 </tr>
             </thead>
             <tbody>

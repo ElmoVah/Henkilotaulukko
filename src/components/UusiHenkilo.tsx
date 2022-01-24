@@ -24,12 +24,19 @@ const UusiHenkilo = ({ addHenkilo }: Props) => {
         setIka(Number(event.target.value));
     };
 
+    const handleClickLisaaHenkilo = (): void => {
+        addHenkilo({ etunimi: etunimi, sukunimi: sukunimi, ika: ika });
+        setEtunimi("");
+        setSukunimi("");
+        setIka(0);
+    } 
+
     return (
         <div>
             <input type="text" placeholder="Etunimi" name="etunimi" value={etunimi} onChange={handleChangeEtunimi} />
             <input type="text" placeholder="Sukunimi" name="sukunimi" value={sukunimi} onChange={handleChangeSukunimi} />
             <input type="number" placeholder="Ikä" name="ika" value={ika} onChange={handleChangeIka} />
-            <button onClick={() => { addHenkilo({ etunimi: etunimi, sukunimi: sukunimi, ika: ika }) }}>Lisää henkilö</button>
+            <button onClick={() => { handleClickLisaaHenkilo() }}>Lisää henkilö</button>
         </div>
     );
 }
