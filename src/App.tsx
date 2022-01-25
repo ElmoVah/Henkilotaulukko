@@ -1,6 +1,6 @@
-import React, { FC, ChangeEvent, useState } from 'react';
+import React, { FC, useState } from 'react';
 import './App.css';
-import HenkiloLista from './components/HenkiloLista';
+import HenkiloLista from './components/HenkiloTaulukko';
 import UusiHenkilo from './components/UusiHenkilo';
 import { IHenkilo } from './Interfaces';
 
@@ -12,6 +12,7 @@ const App: FC = () => {
     setHenkiloLista([...henkiloLista, henkilo]);
   };
 
+  //Päivittää henkilön tiedot taulukkoon.
   const paivitaHenkilo = (henkilo: IHenkilo, paivitettyHenkilo: IHenkilo): void => {
     let newHenkiloLista = henkiloLista;
     for (let i = 0; i < newHenkiloLista.length; i++) {
@@ -28,16 +29,17 @@ const App: FC = () => {
     }))
   };
 
+  //Päivittää henkilölista järjestyksen
   const paivitaHenkiloLista = (jarjestettuHenkilolista: IHenkilo[]): void => {
     setHenkiloLista(jarjestettuHenkilolista);
   }
 
   return (
     <div className="App">
-      <div className="uusiHenkilo">
+      <div>
         <UusiHenkilo {... { addHenkilo }} />
       </div>
-      <div className="henkiloLista">
+      <div>
         <HenkiloLista {...{ henkiloLista, poistaHenkilo, paivitaHenkilo, paivitaHenkiloLista }} />
       </div>
     </div>

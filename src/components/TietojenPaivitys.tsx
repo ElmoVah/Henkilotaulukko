@@ -9,9 +9,9 @@ interface Props {
 
 const TietojenPaivitys = ({ lopetaTietojenMuokkaus, paivitaTiedot, henkilo }: Props) => {
 
-  const [etunimi, setEtunimi] = useState<string>("");
-  const [sukunimi, setSukunimi] = useState<string>("");
-  const [ika, setIka] = useState<number>(0);
+  const [etunimi, setEtunimi] = useState<string>(henkilo.etunimi);
+  const [sukunimi, setSukunimi] = useState<string>(henkilo.sukunimi);
+  const [ika, setIka] = useState<number>(henkilo.ika);
 
 
   const handleChangeEtunimi = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -27,13 +27,56 @@ const TietojenPaivitys = ({ lopetaTietojenMuokkaus, paivitaTiedot, henkilo }: Pr
   };
 
   return (
-    <tr key={"Jee"}>
-      <td><input type="text" placeholder="Etunimi" name="etunimi" value={etunimi} onChange={handleChangeEtunimi} /></td>
-      <td><input type="text" placeholder="Sukunimi" name="sukunimi" value={sukunimi} onChange={handleChangeSukunimi} /></td>
-      <td><input type="number" placeholder="Ikä" name="ika" value={ika} onChange={handleChangeIka} /></td>
-      <td><button onClick={() => { paivitaTiedot(henkilo, { etunimi: etunimi, sukunimi: sukunimi, ika: ika }) }}>Päivitä tiedot</button></td>
-      <td><button onClick={() => { lopetaTietojenMuokkaus() }}>Peruuta</button></td>
-    </tr>
+    <>
+      <tr>
+        <td>
+          <input
+            className="MuutaNimiInput"
+            type="text"
+            placeholder="Etunimi"
+            name="etunimi"
+            value={etunimi}
+            onChange={handleChangeEtunimi}
+          />
+        </td>
+        <td>
+          <input
+            className="MuutaNimiInput"
+            type="text"
+            placeholder="Sukunimi"
+            name="sukunimi"
+            value={sukunimi}
+            onChange={handleChangeSukunimi}
+          />
+        </td>
+        <td>
+          <input
+            className="MuutaIkaInput"
+            type="number"
+            placeholder="Ikä"
+            name="ika"
+            value={ika}
+            onChange={handleChangeIka}
+          />
+        </td>
+        <td>
+          <button
+            className="RiviNappi"
+            onClick={() => { paivitaTiedot(henkilo, { etunimi: etunimi, sukunimi: sukunimi, ika: ika }) }}
+          >
+            Päivitä
+          </button>
+        </td>
+        <td>
+          <button
+            className="RiviNappi"
+            onClick={() => { lopetaTietojenMuokkaus() }}
+          >
+            Peruuta
+          </button>
+        </td>
+      </tr>
+    </>
   );
 }
 
