@@ -55,7 +55,7 @@ const TietojenPaivitys = ({ lopetaTietojenMuokkaus, paivitaTiedot, henkilo }: Pr
             type="number"
             placeholder="Ikä"
             name="ika"
-            value={ika}
+            value={(ika === 0) ? "" : ika}
             onChange={handleChangeIka}
           />
         </td>

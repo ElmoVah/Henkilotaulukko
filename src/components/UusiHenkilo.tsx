@@ -59,7 +59,7 @@ const UusiHenkilo = ({ addHenkilo }: Props) => {
                 <input
                     type="number"
                     placeholder="Ikä"
-                    name="ika" value={ika}
+                    name="ika" value={(ika === 0) ? "" : ika}
                     onChange={handleChangeIka}
                 />
             </div>
