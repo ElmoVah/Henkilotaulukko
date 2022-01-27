@@ -1,3 +1,9 @@
+# Henkilötaulukko
+- Toteutettu Typescriptillä, Reactilla ja CCS:llä
+- Taulukkoon voi lisätä ja poistaa henkilöitä
+- Henkilön tietoja voi muokata tai henkilön voi poistaa kokonaan
+- Henkilöt voi järjestää etuniminen, sukunimen tai iän mukaan
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
