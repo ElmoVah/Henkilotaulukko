@@ -15,11 +15,12 @@ const App: FC = () => {
   //Päivittää henkilön tiedot taulukkoon.
   const paivitaHenkilo = (henkilo: IHenkilo, paivitettyHenkilo: IHenkilo): void => {
     let newHenkiloLista = henkiloLista;
-    for (let i = 0; i < newHenkiloLista.length; i++) {
-      if (newHenkiloLista[i] === henkilo) {
-        newHenkiloLista[i] = paivitettyHenkilo
+    newHenkiloLista.forEach( (element, index) => {
+      if (element === henkilo) {
+        newHenkiloLista[index] = paivitettyHenkilo;
       }
-    }
+    });
+    
     setHenkiloLista(newHenkiloLista);
   }
 

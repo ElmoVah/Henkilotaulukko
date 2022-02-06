@@ -26,10 +26,12 @@ const UusiHenkilo = ({ addHenkilo }: Props) => {
 
     //Lisää uuden henkilön taulukkoon
     const handleClickLisaaHenkilo = (): void => {
-        addHenkilo({ etunimi: etunimi, sukunimi: sukunimi, ika: ika });
-        setEtunimi("");
-        setSukunimi("");
-        setIka(0);
+        if (etunimi !== "" && sukunimi !== "") {
+            addHenkilo({ etunimi: etunimi, sukunimi: sukunimi, ika: ika });
+            setEtunimi("");
+            setSukunimi("");
+            setIka(0);
+        }
     }
 
     return (
